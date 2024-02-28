@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { UserSchema } from "@/schema";
+import { UserLoginSchema } from "@/schema";
 import bcrypt from "bcrypt";
 import prisma from "@/db/prismaConnection";
 import jwt from "jsonwebtoken";
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   }
 
   // validate body using Zod
-  const resultValidation = UserSchema.safeParse(body);
+  const resultValidation = UserLoginSchema.safeParse(body);
 
   // check if the any error happens
   if (!resultValidation.success) {
@@ -41,18 +41,12 @@ export async function POST(req: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: "User Do Not Exist!" }, { status: 400 });
   }
-  
-  // hash the body password
-  const body_password_hashed = await bcrypt.hash(password, 10);
 
   // get the hashed password from DB
   const { password_hashed } = user;
 
   // compare the passwords
-  const isPasswordMatch = await bcrypt.compare(
-    password_hashed,
-    body_password_hashed
-  );
+  const isPasswordMatch = await bcrypt.compare(password, password_hashed);
 
   // check if the password match
   if (!isPasswordMatch) {
