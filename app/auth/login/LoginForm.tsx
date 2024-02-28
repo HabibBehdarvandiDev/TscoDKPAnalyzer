@@ -40,13 +40,13 @@ const LoginForm = () => {
     try {
       console.log(data);
       const res = await axios.post(
-        "http://localhost:3000/api/v1/auth/login",
+        "http://localhost:3000/api/auth/login",
         data
       );
 
       console.log(res.data);
-      sessionStorage.setItem("authToken", res.data.token);
-      router.push("/admin/dashboard");
+      sessionStorage.setItem("authToken", res.data.authToken);
+      router.push("/dashboard");
       setIsSendingData(false);
     } catch (error) {
       setError(true);
@@ -56,7 +56,7 @@ const LoginForm = () => {
 
   return (
     <form
-      className="min-w-[448px] h-fit self-center p-6 m-2 rounded-2xl space-y-5 flex flex-col shadow-sm border border-green-600 border-opacity-35"
+      className="min-w-[448px] h-fit self-center p-6 m-2 rounded-2xl space-y-5 flex flex-col shadow-sm border border-pink-600 border-opacity-35"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Flex gap="2" className="self-center w-80">
@@ -68,7 +68,7 @@ const LoginForm = () => {
           <FaUser width={16} height={16} />
         </TextFieldSlot>
         <TextFieldInput
-          placeholder="Username"
+          placeholder="نام کاربری"
           size={"3"}
           {...register("username", {
             required: {
@@ -92,7 +92,7 @@ const LoginForm = () => {
           <MdKey width={16} height={16} />
         </TextFieldSlot>
         <TextFieldInput
-          placeholder="Password"
+          placeholder="رمز ورود"
           type="password"
           size={"3"}
           {...register("password", {
@@ -127,7 +127,7 @@ const LoginForm = () => {
         )}
       </Flex>
 
-      <Link href={"/"} className="text-sm text-green-600 hover:text-green-700">
+      <Link href={"/"} className="text-sm text-pink-600 hover:text-pink-700">
         رمز خود را فراموش کردید؟ کلیک کنید
       </Link>
 
@@ -136,7 +136,7 @@ const LoginForm = () => {
         size={"3"}
         disabled={isSendingData}
       >
-        Login{" "}
+        ورود{" "}
         {isSendingData ? (
           <Spinner width={4} height={4} ringBg="gray" ringColor="white" />
         ) : null}
@@ -145,7 +145,7 @@ const LoginForm = () => {
       {error && (
         <Callout
           text="Error happened while logging in. Please try again later."
-          color="red"
+          color="pink"
           icon={<MdError width={16} height={16} />}
           size="2"
           variant="soft"
@@ -156,7 +156,7 @@ const LoginForm = () => {
 
       <Flex className="w-full">
         <Text className="text-sm">
-          All the Rights are Received by <Badge color="green">HabibDev</Badge>{" "}
+          All the Rights are Received by <Badge color="pink">HabibDev</Badge>{" "}
           ©Copyright
         </Text>
       </Flex>

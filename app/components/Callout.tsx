@@ -1,6 +1,5 @@
 import { CalloutIcon, CalloutRoot, CalloutText } from "@radix-ui/themes";
 import React, { ReactNode } from "react";
-import { MdError } from "react-icons/md";
 
 interface CalloutProps {
   variant: "soft" | "surface" | "outline";
