@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import { Inter, Vazirmatn } from "next/font/google";
 import "./globals.css";
+import "@radix-ui/themes/styles.css";
+import { Theme, ThemePanel } from "@radix-ui/themes";
+import "./theme-config.css";
 
-const vazir = Vazirmatn({ subsets: ["arabic"] });
+const vazir = Vazirmatn({
+  subsets: ["arabic"],
+  display: "swap",
+  variable: "--font-vazir",
+});
 
 export const metadata: Metadata = {
   title: "Tsco DKP Analyzer",
@@ -15,8 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={vazir.className}>{children}</body>
+    <html lang="fa" dir="rtl">
+      <body className={vazir.className}>
+        <Theme appearance="light" accentColor="crimson" grayColor="mauve">
+          {children}
+          {/* <ThemePanel /> */}
+        </Theme>
+      </body>
     </html>
   );
 }
