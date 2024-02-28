@@ -73,15 +73,15 @@ const LoginForm = () => {
           {...register("username", {
             required: {
               value: true,
-              message: "Username is required",
+              message: "نام کاربری نباید خالی باشد",
             },
             maxLength: {
               value: 25,
-              message: "Username cannot be more than 25 characters",
+              message: "نام کاربری نباید بیشتر از 25 کارکتر باشد",
             },
             minLength: {
               value: 4,
-              message: "Username cannot be less than 4 characters",
+              message: "نام کاربری نباید کمتر از 3 کاراکتر باشد",
             },
           })}
         ></TextFieldInput>
@@ -98,15 +98,15 @@ const LoginForm = () => {
           {...register("password", {
             required: {
               value: true,
-              message: "Password is required",
+              message: "رمز عبور نباید خالی باشد",
             },
             maxLength: {
               value: 25,
-              message: "Password cannot be more than 25 characters",
+              message: "رمز عبور باید کمتر از 25 کاراکتر باشد",
             },
             minLength: {
               value: 8,
-              message: "Password cannot be less than 8 characters",
+              message: "رمز عبور باید بیشتر از 8 کاراکتر باشد",
             },
           })}
         ></TextFieldInput>
@@ -114,15 +114,14 @@ const LoginForm = () => {
 
       <Flex gap="2" direction={"column"}>
         {errors.username && (
-          <Text className="text-danger text-sm flex items-center">
-            <MdError width={4} height={4} className="mr-2" />{" "}
+          <Text className="text-pink-500 text-sm flex items-center">
+            <MdError width={4} height={4} className="mr-2" />
             {errors.username?.message}
           </Text>
         )}
         {errors.password && (
-          <Text className="text-danger text-sm flex items-center">
-            <MdError width={4} height={4} className="mr-2" />{" "}
-            {errors.password?.message}
+          <Text className="text-pink-500 text-sm flex items-center">
+            <MdError width={4} height={4} className="mr-2" />
           </Text>
         )}
       </Flex>
@@ -144,7 +143,7 @@ const LoginForm = () => {
 
       {error && (
         <Callout
-          text="Error happened while logging in. Please try again later."
+          text="مشکل در برقراری ارتباط با سرور. لطفا با پشتیبانی تماس بگیرید"
           color="pink"
           icon={<MdError width={16} height={16} />}
           size="2"
