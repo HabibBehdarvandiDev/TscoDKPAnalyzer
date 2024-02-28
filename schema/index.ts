@@ -13,4 +13,23 @@ const UserSignUpSchema = z.object({
   password: z.string().min(8).max(50),
 });
 
-export { UserLoginSchema, UserSignUpSchema };
+const ProductPost = z.object({
+  product_name: z.string().min(3).max(22),
+  dkp: z.number(),
+  price: z.string(),
+  product_category: z.enum(["MOUSE", "KEYBOARD", "HEADPHONE"]),
+});
+
+const ProductGetOne = z.object({
+  id: z.string(),
+  product_name: z.string().min(3).max(22),
+  dkp: z.number(),
+  price: z.string(),
+  product_category: z.enum(["MOUSE", "KEYBOARD", "HEADPHONE"]),
+  created_at: z.string(),
+  updated_at: z.string(),
+});
+
+const ProductGetAll = z.array(ProductGetOne).nonempty();
+
+export { UserLoginSchema, UserSignUpSchema, ProductPost };

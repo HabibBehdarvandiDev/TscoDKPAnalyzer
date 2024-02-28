@@ -11,10 +11,10 @@ model product {
   id               Int             @id @default(autoincrement())
   product_name     String          @unique
   dkp              Int
-  price            BigInt
+  price            String
   product_category ProductCategory
   created_at       DateTime        @default(now())
-  updated_at       DateTime        @updatedAt
+  updated_at       DateTime        @default(now()) @updatedAt
 }
 
 enum ProductCategory {
@@ -24,13 +24,13 @@ enum ProductCategory {
 }
 
 model user {
-  id             Int    @id @default(autoincrement())
-  first_name     String
-  last_name      String
-  role           String
-  actions        Json?
-  username       String
-  password       String
+  id              Int    @id @default(autoincrement())
+  first_name      String
+  last_name       String
+  role            String
+  actions         Json?
+  username        String
+  password        String
   password_hashed String
 }
 
