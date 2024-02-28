@@ -20,15 +20,18 @@ model product {
 enum ProductCategory {
   MOUSE
   KEYBOARD
-  HEDPHONE
+  HEADPHONE
 }
 
 model user {
-  id         Int    @id @default(autoincrement())
-  first_name String
-  last_name  String
-  role       String
-  actions    Json
+  id             Int    @id @default(autoincrement())
+  first_name     String
+  last_name      String
+  role           String
+  actions        Json?
+  username       String
+  password       String
+  password_hashed String
 }
 
 enum UserRole {
