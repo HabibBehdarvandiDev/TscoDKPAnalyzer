@@ -1,20 +1,19 @@
-import Logo from "@/public/logo/logo.png";
+import Logo from "@/public/logo/logo_fa.png";
 import { Avatar, Flex, Separator, Tooltip } from "@radix-ui/themes";
 import Link from "next/link";
 import DashboardNavigationMenu from "./DashboardNavigationMenu";
 import Profile from "./Profile";
+import Image from "next/image";
 
 const Sidebar = () => {
   return (
-    <aside className="py-8 px-4 shadow-primaryLight flex flex-col items-center justify-between">
+    <aside className="py-8 px-4 shadow-primaryLight flex flex-col items-center justify-between border-l">
       <Link href={"/admin/dashboard"}>
         <Flex className="p-1 rounded-lg border border-primary border-opacity-25">
-          <Avatar
-            fallback={"Logo"}
-            src={Logo.src}
-            className=" p-2 fill-white"
-            size={"4"}
-          />
+        <Flex className="p-1 w-16">
+          <Image src={Logo} alt="Logo" />
+        </Flex>
+
         </Flex>
       </Link>
 

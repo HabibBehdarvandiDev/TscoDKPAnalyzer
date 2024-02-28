@@ -1,6 +1,7 @@
 "use client";
 import Callout from "@/app/components/Callout";
 import Spinner from "@/app/components/Spinner";
+import { useUserContext } from "@/context/UserContext";
 import Logo from "@/public/logo/logo.png";
 import {
   Avatar,
@@ -26,6 +27,7 @@ import { MdError, MdKey } from "react-icons/md";
 const LoginForm = () => {
   const [error, setError] = useState<boolean>(false);
   const [isSendingData, setIsSendingData] = useState<boolean>(false);
+  const { setAuth } = useUserContext();
 
   const router = useRouter();
 
@@ -46,6 +48,7 @@ const LoginForm = () => {
 
       console.log(res.data);
       sessionStorage.setItem("authToken", res.data.authToken);
+      setAuth(res.data.authToken);
       router.push("/dashboard");
       setIsSendingData(false);
     } catch (error) {

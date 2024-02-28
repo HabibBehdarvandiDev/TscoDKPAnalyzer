@@ -18,7 +18,7 @@ const DashboardNavigationMenu = () => {
               <Flex
                 className={`p-3 rounded-lg font-medium flex items-center ${
                   isActive
-                    ? "text-lime-700 bg-lime-500 bg-opacity-20"
+                    ? "text-pink-700 bg-pink-500 bg-opacity-20"
                     : "text-gray-400"
                 }`}
                 key={link.title}

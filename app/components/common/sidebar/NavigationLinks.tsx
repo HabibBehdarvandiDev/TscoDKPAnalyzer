@@ -1,9 +1,5 @@
-import { FaPeopleCarry } from "react-icons/fa";
-import { GrAppleAppStore } from "react-icons/gr";
-import { PiUsersThreeBold } from "react-icons/pi";
+import { FiBox } from "react-icons/fi";
 import { RiHome6Line } from "react-icons/ri";
-import { TbListDetails, TbDiscount2 } from "react-icons/tb";
-import { TfiApple } from "react-icons/tfi";
 
 interface navigationSubMenu {
   title: string;
@@ -21,28 +17,13 @@ interface NavigationLinks {
 const NavigationLinks: NavigationLinks[] = [
   {
     title: "Home",
-    path: "/admin/dashboard",
+    path: "/dashboard",
     icon: <RiHome6Line className="w-7 h-7" />,
   },
   {
-    title: "Apple",
-    path: "/admin/dashboard/accounts",
-    icon: <GrAppleAppStore className="w-7 h-7" />,
-  },
-  {
-    title: "Customers",
-    path: "/admin/dashboard/customers",
-    icon: <PiUsersThreeBold className="w-7 h-7" />,
-  },
-  {
-    title: "Discount",
-    path: "/admin/dashboard/discount",
-    icon: <TbDiscount2 className="w-7 h-7" />,
-  },
-  {
-    title: "Colleagues",
-    path: "/admin/dashboard/colleagues",
-    icon: <FaPeopleCarry className="w-7 h-7" />,
+    title: "digikala",
+    path: "/dashboard/digikala",
+    icon: <FiBox className="w-7 h-7" />,
   },
 ];
 

@@ -4,6 +4,7 @@ import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import "./theme-config.css";
+import { UserProvider } from "@/context/UserContext";
 
 const vazir = Vazirmatn({
   subsets: ["arabic"],
@@ -25,7 +26,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <body className={vazir.className}>
         <Theme appearance="light" accentColor="crimson" grayColor="mauve">
-          {children}
+          <UserProvider>{children}</UserProvider>
           {/* <ThemePanel /> */}
         </Theme>
       </body>
