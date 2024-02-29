@@ -1,8 +1,11 @@
+import DigikalaTable from "./DigikalaTable";
 
 const DigigkalaPage = () => {
   return (
-    <div>DigigkalaPage</div>
-  )
-}
+    <div>
+      <DigikalaTable />
+    </div>
+  );
+};
 
-export default DigigkalaPage
+export default DigigkalaPage;
