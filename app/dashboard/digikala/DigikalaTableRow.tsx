@@ -7,6 +7,7 @@ import {
 } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
+import RowActions from "./RowActions";
 
 const DigikalaTableRow = ({ item }: any) => {
   return (
@@ -53,6 +54,10 @@ const DigikalaTableRow = ({ item }: any) => {
         <Flex justify="center" align="center" style={{ height: "100%" }}>
           {item.seller}
         </Flex>
+      </TableCell>
+      <TableCell className="text-center">
+        
+          <RowActions />
       </TableCell>
     </TableRow>
   );

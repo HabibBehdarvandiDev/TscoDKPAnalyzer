@@ -18,6 +18,7 @@ const tableHeader = [
   "Tsco Online Price",
   "Category",
   "Seller Name",
+  "Actions"
 ];
 
 const DigikalaTable = ({ filters }: any) => {
