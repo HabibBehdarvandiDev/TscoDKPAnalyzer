@@ -56,8 +56,7 @@ const DigikalaTableRow = ({ item }: any) => {
         </Flex>
       </TableCell>
       <TableCell className="text-center">
-        
-          <RowActions />
+        <RowActions item={item} />
       </TableCell>
     </TableRow>
   );
