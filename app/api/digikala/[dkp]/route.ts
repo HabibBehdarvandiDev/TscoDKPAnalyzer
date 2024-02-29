@@ -7,13 +7,9 @@ export async function GET(
 ) {
   const { dkp } = params;
 
-  console.log("Before sending request to Digikala API");
-
   try {
     // Send GET request to the Digikala API
     const response = await fetch(`https://api.digikala.com/v2/product/${dkp}/`);
-
-    console.log("After sending request to Digikala API");
 
     // Check if the response is successful
     if (!response.ok) {
@@ -22,12 +18,8 @@ export async function GET(
       );
     }
 
-    console.log("After checking response.ok");
-
     // Parse the JSON response
     const data = await response.json();
-
-    console.log("After parsing JSON response");
 
     // Extract the required information
     // Extract the image URL
@@ -52,18 +44,12 @@ export async function GET(
     // Extract the seller
     const seller = data.data.product.default_variant.seller.title || "";
 
-    console.log("After extracting required information");
-
     // Extract the product rating statistics
     const rating_stats = data.data.product.default_variant.statistics;
-
-    console.log("After extracting rating statistics");
 
     // Extract the total number of reviews and the overall rating
     const total_reviews = rating_stats ? rating_stats.total_count : "";
     const overall_rating = rating_stats ? rating_stats.total_rate : "";
-
-    console.log("After extracting total reviews and overall rating");
 
     // Check for empty values before extracting reviews for each rating category
     const totally_satisfied_reviews = rating_stats
@@ -80,25 +66,18 @@ export async function GET(
       ? rating_stats.totally_dissatisfied.rate_count
       : "";
 
-    console.log("After extracting reviews for each rating category");
-
     const product = await prisma.product.findFirst({
       where: {
         dkp: parseInt(dkp),
       },
     });
 
-    console.log("After querying Prisma for product");
-
     if (!product) {
-      console.log("Product not found in database");
       return NextResponse.json(
         { error: "The product does not exist!" },
         { status: 400 }
       );
     }
-
-    console.log("After checking if product exists in database");
 
     // Prepare the response object
     const responseObject = {
@@ -124,8 +103,6 @@ export async function GET(
         totally_dissatisfied_reviews,
       },
     };
-
-    console.log("After preparing response object");
 
     // Return the data as the response
     return NextResponse.json(responseObject, { status: 200 });
