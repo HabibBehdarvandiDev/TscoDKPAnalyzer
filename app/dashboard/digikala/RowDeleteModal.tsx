@@ -49,17 +49,17 @@ const RowDeleteModal = ({ item }: any) => {
       </DialogTrigger>
 
       <DialogContent style={{ maxWidth: 450 }}>
-        <DialogTitle>حذف کالا {item.title}</DialogTitle>
+        <DialogTitle className="uppercase">حذف کالا {item.title}</DialogTitle>
         <DialogDescription size="2" mb="4">
-          {user?.first_name} عزیز، شما در حال حذف کالای{" "}
-          <Badge variant="surface" size={"1"} color="crimson">
+          <b>{user?.first_name}</b> عزیز، شما در حال حذف کالای{" "}
+          <Badge variant="surface" size={"1"} color="crimson" className="uppercase">
             {item.title}
           </Badge>{" "}
           هستید. لطفا در نظر داشته باشید که فعالیت شما در پایگاه داده ذخیره می
           شود.
         </DialogDescription>
 
-        <Flex gap="3" mt="4" justify="end">
+        <Flex gap="3" mt="4" justify="start">
           <DialogClose>
             <Button variant="soft" color="gray">
               لغو

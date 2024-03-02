@@ -25,6 +25,8 @@ export async function GET(
     // Extract the image URL
     const image_url = data.data.product.images.main.url[0] || "";
 
+    const product_url = data.data.product.url.uri || "";
+
     // Extract the product name
     const product_name = data.data.product.title_fa || "";
 
@@ -83,7 +85,8 @@ export async function GET(
     const responseObject = {
       id: product?.id,
       dkp: parseInt(dkp),
-      image_url,
+      image_url: image_url,
+      product_url: product_url,
       title: product?.product_name,
       product_name,
       rating_count: rating_count,
@@ -92,7 +95,7 @@ export async function GET(
       digikala_price: selling_price,
       tsco_price: parseInt(product?.price),
       product_category: product?.product_category,
-      seller,
+      seller: seller,
       rating_stats: {
         total_reviews,
         overall_rating,
