@@ -1,36 +1,37 @@
 "use client";
 
+import Spinner from "@/app/components/Spinner";
+import { ProductCategory } from "@prisma/client";
 import {
-  DialogRoot,
-  DialogTrigger,
   Button,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-  Badge,
-  Flex,
   DialogClose,
-  IconButton,
-  TextFieldInput,
-  TextFieldRoot,
-  TextFieldSlot,
+  DialogContent,
+  DialogDescription,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+  Flex,
   SelectContent,
   SelectItem,
   SelectRoot,
   SelectTrigger,
+  TextFieldInput,
+  TextFieldRoot,
+  TextFieldSlot
 } from "@radix-ui/themes";
-import { IoAddOutline } from "react-icons/io5";
-import { TbCurrencyIranianRial } from "react-icons/tb";
-import { ProductCategory } from "@prisma/client";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { TbCurrencyIranianRial } from "react-icons/tb";
 
 const AddProductModal = () => {
   const [selectValue, setSelectValue] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(true);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
+    setLoading(true);
     const payload = {
       product_name: data.productName,
       dkp: parseInt(data.dkp),
@@ -41,6 +42,13 @@ const AddProductModal = () => {
 
     const response = axios.post("/api/product", payload).then((res) => {
       console.log(res.data);
+      if (res.status === 200) {
+        setLoading(false);
+        setSuccess(true);
+      } else {
+        setLoading(false);
+        setSuccess(false);
+      }
     });
   };
 
@@ -49,15 +57,18 @@ const AddProductModal = () => {
   return (
     <DialogRoot>
       <DialogTrigger>
-        <IconButton size={"3"} variant="solid" radius="medium" color="blue">
-          <IoAddOutline className="w-5 h-5" />
-        </IconButton>
+        <Button size={"3"} variant="solid" color="blue">
+          ایجاد کالا
+        </Button>
       </DialogTrigger>
 
       <DialogContent style={{ maxWidth: 450 }}>
         <DialogTitle className="uppercase">ایجاد کالای جدید</DialogTitle>
         <DialogDescription size="2" mb="4">
-          <form onSubmit={handleSubmit(onSubmit)}  className="flex flex-col space-y-3">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col space-y-3"
+          >
             <Flex className="flex flex-col space-y-3">
               <label htmlFor="Product Name" className="font-medium">
                 نام کالا :{" "}
@@ -124,7 +135,18 @@ const AddProductModal = () => {
                   لغو
                 </Button>
               </DialogClose>
-                <Button type="submit">ثبت</Button>
+              <Button type="submit" disabled={loading}>
+                {loading ? (
+                  <Spinner
+                    width={4}
+                    height={4}
+                    ringColor="white"
+                    ringBg="gray"
+                  />
+                ) : (
+                  "ثبت"
+                )}
+              </Button>
             </Flex>
           </form>
         </DialogDescription>

@@ -15,14 +15,13 @@ import {
   Badge,
 } from "@radix-ui/themes";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+
 import { FiTrash } from "react-icons/fi";
 
 const RowDeleteModal = ({ item }: any) => {
   const { decodeAuthToken } = useUserContext();
 
   const user = decodeAuthToken();
-  const router = useRouter();
 
   const handleDelete = async () => {
     try {
@@ -31,7 +30,7 @@ const RowDeleteModal = ({ item }: any) => {
         .delete(`http://localhost:3000/api/product/${item.id}`)
         .then((response) => {
           if (response.status === 200) {
-            router.refresh();
+            window.location.reload();
           }
         });
     } catch (error) {
@@ -52,7 +51,12 @@ const RowDeleteModal = ({ item }: any) => {
         <DialogTitle className="uppercase">حذف کالا {item.title}</DialogTitle>
         <DialogDescription size="2" mb="4">
           <b>{user?.first_name}</b> عزیز، شما در حال حذف کالای{" "}
-          <Badge variant="surface" size={"1"} color="crimson" className="uppercase">
+          <Badge
+            variant="surface"
+            size={"1"}
+            color="crimson"
+            className="uppercase"
+          >
             {item.title}
           </Badge>{" "}
           هستید. لطفا در نظر داشته باشید که فعالیت شما در پایگاه داده ذخیره می

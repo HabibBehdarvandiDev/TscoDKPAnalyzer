@@ -41,7 +41,7 @@ const RowInfoModal = ({ product }: any) => {
         </DialogTitle>
         <DialogDescription size="2" mb="4">
           <Flex>
-            <Box>
+            <Box className="ml-4">
               <Image
                 src={product.image_url}
                 alt={product.title}

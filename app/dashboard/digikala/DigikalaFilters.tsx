@@ -11,6 +11,7 @@ import {
 } from "@radix-ui/themes";
 import { FiSearch } from "react-icons/fi";
 import AddProductModal from "./AddProductModal";
+import RefreshPage from "@/app/components/RefreshPage";
 
 const DigikalaFilters = ({ filters, onFilterChange }: any) => {
   const {
@@ -24,6 +25,7 @@ const DigikalaFilters = ({ filters, onFilterChange }: any) => {
   return (
     <Box className="mb-3 flex gap-4 justify-center items-center">
       <AddProductModal />
+      <RefreshPage />
       <SelectRoot
         size="3"
         onValueChange={(e) =>
