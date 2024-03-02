@@ -10,6 +10,7 @@ import {
   TextFieldSlot,
 } from "@radix-ui/themes";
 import { FiSearch } from "react-icons/fi";
+import AddProductModal from "./AddProductModal";
 
 const DigikalaFilters = ({ filters, onFilterChange }: any) => {
   const {
@@ -22,6 +23,7 @@ const DigikalaFilters = ({ filters, onFilterChange }: any) => {
 
   return (
     <Box className="mb-3 flex gap-4 justify-center items-center">
+      <AddProductModal />
       <SelectRoot
         size="3"
         onValueChange={(e) =>
@@ -72,7 +74,10 @@ const DigikalaFilters = ({ filters, onFilterChange }: any) => {
           placeholder="جستجو بر اساس نام کالا"
           value={productNameSearch}
           onChange={(e) =>
-            onFilterChange({ filterType: "productNameSearch", value: e.target.value })
+            onFilterChange({
+              filterType: "productNameSearch",
+              value: e.target.value,
+            })
           }
         />
       </TextFieldRoot>
@@ -85,7 +90,10 @@ const DigikalaFilters = ({ filters, onFilterChange }: any) => {
           placeholder="جستجو بر اساس نام فروشنده"
           value={sellerNameSearch}
           onChange={(e) =>
-            onFilterChange({ filterType: "sellerNameSearch", value: e.target.value })
+            onFilterChange({
+              filterType: "sellerNameSearch",
+              value: e.target.value,
+            })
           }
         />
       </TextFieldRoot>
