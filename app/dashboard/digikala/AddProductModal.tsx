@@ -57,7 +57,7 @@ const AddProductModal = () => {
   return (
     <DialogRoot>
       <DialogTrigger>
-        <Button size={"3"} variant="solid" color="blue">
+        <Button size={"3"} variant="surface" color="red">
           ایجاد کالا
         </Button>
       </DialogTrigger>
@@ -76,7 +76,7 @@ const AddProductModal = () => {
               <TextFieldInput
                 size={"3"}
                 variant="surface"
-                color="crimson"
+                color="red"
                 id="Product Name"
                 {...register("productName")}
               />
@@ -88,7 +88,7 @@ const AddProductModal = () => {
               <TextFieldInput
                 size={"3"}
                 variant="surface"
-                color="crimson"
+                color="red"
                 id="dkp"
                 type="number"
                 {...register("dkp")}
@@ -105,7 +105,7 @@ const AddProductModal = () => {
                 <TextFieldInput
                   size={"3"}
                   variant="surface"
-                  color="crimson"
+                  color="red"
                   id="price"
                   type="number"
                   {...register("price")}

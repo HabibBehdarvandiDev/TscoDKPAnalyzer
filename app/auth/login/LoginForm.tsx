@@ -2,7 +2,7 @@
 import Callout from "@/app/components/Callout";
 import Spinner from "@/app/components/Spinner";
 import { useUserContext } from "@/context/UserContext";
-import Logo from "@/public/logo/logo.png";
+import Logo from "@/public/logo/logo_dark.png";
 import {
   Avatar,
   Badge,
@@ -50,7 +50,6 @@ const LoginForm = () => {
       sessionStorage.setItem("authToken", res.data.authToken);
       setAuth(res.data.authToken);
       router.push("/dashboard");
-      setIsSendingData(false);
     } catch (error) {
       setError(true);
       setIsSendingData(false);
@@ -59,10 +58,10 @@ const LoginForm = () => {
 
   return (
     <form
-      className="min-w-[448px] h-fit self-center p-6 m-2 rounded-2xl space-y-5 flex flex-col shadow-sm border border-pink-600 border-opacity-35"
+      className="min-w-[448px] h-fit self-center p-6 m-2 rounded-2xl space-y-5 flex flex-col shadow-sm border border-red-600 border-opacity-35"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Flex gap="2" className="self-center w-80">
+      <Flex gap="2" className="self-center w-44">
         <Image src={Logo} alt="Logo png" />
       </Flex>
 
@@ -117,19 +116,19 @@ const LoginForm = () => {
 
       <Flex gap="2" direction={"column"}>
         {errors.username && (
-          <Text className="text-pink-500 text-sm flex items-center">
+          <Text className="text-red-500 text-sm flex items-center">
             <MdError width={4} height={4} className="mr-2" />
-            {errors.username?.message}
+            {!errors.username?.message}
           </Text>
         )}
         {errors.password && (
-          <Text className="text-pink-500 text-sm flex items-center">
+          <Text className="text-red-500 text-sm flex items-center">
             <MdError width={4} height={4} className="mr-2" />
           </Text>
         )}
       </Flex>
 
-      <Link href={"/"} className="text-sm text-pink-600 hover:text-pink-700">
+      <Link href={"/"} className="text-sm text-red-600 hover:text-red-700">
         رمز خود را فراموش کردید؟ کلیک کنید
       </Link>
 
@@ -147,7 +146,7 @@ const LoginForm = () => {
       {error && (
         <Callout
           text="مشکل در برقراری ارتباط با سرور. لطفا با پشتیبانی تماس بگیرید"
-          color="pink"
+          color="red"
           icon={<MdError width={16} height={16} />}
           size="2"
           variant="soft"
@@ -156,9 +155,9 @@ const LoginForm = () => {
 
       <Separator my={"3"} size={"4"} className="w-full" />
 
-      <Flex className="w-full">
+      <Flex className="w-full" justify={"center"}>
         <Text className="text-sm">
-          All the Rights are Received by <Badge color="pink">HabibDev</Badge>{" "}
+          All the Rights are Received by <Badge color="red">HabibDev</Badge>{" "}
           ©Copyright
         </Text>
       </Flex>

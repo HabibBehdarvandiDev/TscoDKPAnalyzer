@@ -1,6 +1,7 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
 
 interface DecodedUser {
   id: number;
@@ -31,6 +32,7 @@ const UserContext = createContext<UserContextType>(initialContextValue);
 export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   const [authToken, setAuthToken] = useState(
     localStorage.getItem("authToken") || ""
   );
@@ -53,6 +55,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       return null;
     }
   };
+
+  useEffect(() => {
+    if (!authToken) {
+      router.push("/auth/login"); // Adjust the route as needed
+    }
+  }, [authToken, router]);
 
   return (
     <UserContext.Provider

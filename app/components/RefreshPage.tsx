@@ -9,7 +9,7 @@ const RefreshPage = () => {
   };
 
   return (
-    <Button onClick={handleRefresh} color="blue" size={"3"} variant="solid">
+    <Button onClick={handleRefresh} color="red" size={"3"} variant="solid">
       <FaArrowRotateLeft className="w-3 h-3" />
     </Button>
   );

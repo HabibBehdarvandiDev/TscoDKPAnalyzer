@@ -1,19 +1,13 @@
 "use client";
-import {
-  Button,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuRoot,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@radix-ui/themes";
-import Link from "next/link";
+import { Button, Flex, IconButton } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
-import { FiUser } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { IoMoonSharp, IoSunnySharp } from "react-icons/io5";
 import { MdLogout } from "react-icons/md";
-import { PiGear } from "react-icons/pi";
 
 const HeaderActions = () => {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
   const router = useRouter();
 
   const handleLogout = () => {
@@ -24,10 +18,24 @@ const HeaderActions = () => {
     router.push("/auth/login");
   };
 
+  useEffect(() => {
+    document.body.classList.remove(theme === "light" ? "dark" : "light");
+    document.body.classList.add(theme);
+  }, [theme]);
+
   return (
-    <Button variant="solid" size={"2"} color="red" onClick={handleLogout}>
-      Log Out <MdLogout className="ml-1 w-4 h-4" />
-    </Button>
+    <Flex className="flex gap-3">
+      <IconButton variant="surface">
+        {theme === "light" ? (
+          <IoMoonSharp onClick={() => setTheme("dark")} />
+        ) : (
+          <IoSunnySharp onClick={() => setTheme("light")} />
+        )}
+      </IconButton>
+      <Button variant="solid" size={"2"} color="red" onClick={handleLogout}>
+        Log Out <MdLogout className="ml-1 w-4 h-4" />
+      </Button>
+    </Flex>
   );
 };
 

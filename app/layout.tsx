@@ -23,12 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className={vazir.className}>
-        <Theme appearance="light" accentColor="crimson" grayColor="mauve">
-          <UserProvider>{children}</UserProvider>
-          {/* <ThemePanel /> */}
-        </Theme>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <body className={`${vazir.className}`}>
+        <UserProvider>
+          
+          <Theme appearance="dark" accentColor="red" grayColor="mauve">
+            {children}
+            {/* <ThemePanel /> */}
+          </Theme>
+        </UserProvider>
       </body>
     </html>
   );

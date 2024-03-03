@@ -21,7 +21,7 @@ const Profile = () => {
     <HoverCardRoot>
       <HoverCardTrigger>
         <Flex className="p-1">
-          <FaUser className="w-4 h-4 text-pink-600" />
+          <FaUser className="w-4 h-4 text-red-600" />
         </Flex>
       </HoverCardTrigger>
       <HoverCardContent size={"2"}>
@@ -34,7 +34,7 @@ const Profile = () => {
               {user?.username}@
             </Text>
 
-            <Badge size={"1"} color="crimson" className="w-fit" mt={"3"}>
+            <Badge size={"1"} color="red" className="w-fit" mt={"3"}>
               @{user?.role}
             </Badge>
           </Box>

@@ -36,6 +36,9 @@ export async function GET(
     // Extract the rating count
     const rating_count = data.data.product.rating.count || "";
 
+    // stars 
+/*     const product_stars = data.data.product.seo.markup_schema.
+ */
     // Extract the comment count
     const comment_count = data.data.product.last_questions.length || "";
 

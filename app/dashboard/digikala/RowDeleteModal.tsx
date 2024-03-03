@@ -54,7 +54,7 @@ const RowDeleteModal = ({ item }: any) => {
           <Badge
             variant="surface"
             size={"1"}
-            color="crimson"
+            color="red"
             className="uppercase"
           >
             {item.title}

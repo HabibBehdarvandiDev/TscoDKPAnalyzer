@@ -28,7 +28,7 @@ const RowInfoModal = ({ product }: any) => {
   return (
     <DialogRoot>
       <DialogTrigger>
-        <Button variant="solid" color="crimson">
+        <Button variant="solid" color="red">
           <FiInfo className="w-4 h-4" />
         </Button>
       </DialogTrigger>

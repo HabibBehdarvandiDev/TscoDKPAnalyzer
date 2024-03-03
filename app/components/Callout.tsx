@@ -8,7 +8,7 @@ interface CalloutProps {
     | "red"
     | "ruby"
     | "crimson"
-    | "pink"
+    | "red"
     | "plum"
     | "purple"
     | "violet"
