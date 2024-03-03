@@ -43,9 +43,9 @@ const Callout = ({
   text,
 }: CalloutProps) => {
   return (
-    <CalloutRoot color={color} size={size} variant={variant}>
+    <CalloutRoot color={color} size={size} variant={variant} >
       {icon && <CalloutIcon>{icon}</CalloutIcon>}
-      <CalloutText>{text}</CalloutText>
+      <CalloutText className="text-right">{text}</CalloutText>
     </CalloutRoot>
   );
 };

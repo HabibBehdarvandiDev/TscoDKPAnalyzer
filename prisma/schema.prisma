@@ -21,6 +21,11 @@ enum ProductCategory {
   MOUSE
   KEYBOARD
   HEADPHONE
+  CASE
+  FAN
+  SPEAKER
+  MOUSEPAD
+  GAMEPAD
 }
 
 model user {

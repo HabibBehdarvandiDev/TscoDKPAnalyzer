@@ -1,5 +1,6 @@
 "use client";
 
+import Callout from "@/app/components/Callout";
 import Spinner from "@/app/components/Spinner";
 import { ProductCategory } from "@prisma/client";
 import {
@@ -17,7 +18,7 @@ import {
   SelectTrigger,
   TextFieldInput,
   TextFieldRoot,
-  TextFieldSlot
+  TextFieldSlot,
 } from "@radix-ui/themes";
 import axios from "axios";
 import { useState } from "react";
@@ -26,11 +27,14 @@ import { TbCurrencyIranianRial } from "react-icons/tb";
 
 const AddProductModal = () => {
   const [selectValue, setSelectValue] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<boolean>(true);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const warningMessage =
+    "لطفا بعداز کلیک کردن بر روی گزینه ثبت، صفحه را دوباره بارگزاری کنید تا اطلاعات بروز شوند.";
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => {
+
+  const onSubmit = async (data: any) => {
     setLoading(true);
     const payload = {
       product_name: data.productName,
@@ -38,26 +42,34 @@ const AddProductModal = () => {
       price: data.price,
       product_category: selectValue,
     };
-    console.log(payload);
 
-    const response = axios.post("/api/product", payload).then((res) => {
-      console.log(res.data);
-      if (res.status === 200) {
+    try {
+      const response = await axios.post("/api/product", payload);
+      if (response.status === 200) {
+        setOpen(false);
         setLoading(false);
-        setSuccess(true);
-      } else {
-        setLoading(false);
-        setSuccess(false);
       }
-    });
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const categories = Object.keys(ProductCategory);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <DialogRoot>
+    <DialogRoot open={open}>
       <DialogTrigger>
-        <Button size={"3"} variant="surface" color="red">
+        <Button size={"3"} variant="surface" color="red" onClick={handleOpen}>
           ایجاد کالا
         </Button>
       </DialogTrigger>
@@ -74,6 +86,7 @@ const AddProductModal = () => {
                 نام کالا :{" "}
               </label>
               <TextFieldInput
+                autoComplete="off"
                 size={"3"}
                 variant="surface"
                 color="red"
@@ -130,12 +143,10 @@ const AddProductModal = () => {
             </Flex>
 
             <Flex gap="3" mt="4" justify="start">
-              <DialogClose>
-                <Button variant="soft" color="gray">
-                  لغو
-                </Button>
-              </DialogClose>
-              <Button type="submit" disabled={loading}>
+              <Button variant="soft" color="gray" onClick={handleClose}>
+                لغو
+              </Button>
+              <Button type="submit" disabled={loading} onClick={handleClose}>
                 {loading ? (
                   <Spinner
                     width={4}
@@ -147,6 +158,14 @@ const AddProductModal = () => {
                   "ثبت"
                 )}
               </Button>
+            </Flex>
+            <Flex justify={"center"}>
+              <Callout
+                color="yellow"
+                text={warningMessage}
+                size="1"
+                variant="soft"
+              />
             </Flex>
           </form>
         </DialogDescription>

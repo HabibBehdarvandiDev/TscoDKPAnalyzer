@@ -6,7 +6,7 @@ import { IoMoonSharp, IoSunnySharp } from "react-icons/io5";
 import { MdLogout } from "react-icons/md";
 
 const HeaderActions = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   const router = useRouter();
 

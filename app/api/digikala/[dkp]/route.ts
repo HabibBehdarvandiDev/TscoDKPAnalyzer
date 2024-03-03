@@ -36,9 +36,20 @@ export async function GET(
     // Extract the rating count
     const rating_count = data.data.product.rating.count || "";
 
-    // stars 
-/*     const product_stars = data.data.product.seo.markup_schema.
- */
+    // Extract the ratingValue
+    let rating_value = 0;
+    if (
+      data.data &&
+      data.data.seo &&
+      data.data.seo.markup_schema &&
+      data.data.seo.markup_schema.length > 0
+    ) {
+      const aggregateRating = data.data.seo.markup_schema[0].aggregateRating;
+      if (aggregateRating) {
+        rating_value = aggregateRating.ratingValue || 0;
+      }
+    }
+
     // Extract the comment count
     const comment_count = data.data.product.last_questions.length || "";
 
@@ -99,6 +110,7 @@ export async function GET(
       tsco_price: parseInt(product?.price),
       product_category: product?.product_category,
       seller: seller,
+      rating_value: rating_value,
       rating_stats: {
         total_reviews,
         overall_rating,

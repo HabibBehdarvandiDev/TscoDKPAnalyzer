@@ -46,10 +46,11 @@ const LoginForm = () => {
         data
       );
 
-      console.log(res.data);
-      sessionStorage.setItem("authToken", res.data.authToken);
       setAuth(res.data.authToken);
-      router.push("/dashboard");
+      sessionStorage.setItem("authToken", res.data.authToken);
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000);
     } catch (error) {
       setError(true);
       setIsSendingData(false);

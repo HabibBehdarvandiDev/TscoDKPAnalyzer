@@ -17,7 +17,16 @@ const ProductPost = z.object({
   product_name: z.string().min(3).max(22),
   dkp: z.number(),
   price: z.string(),
-  product_category: z.enum(["MOUSE", "KEYBOARD", "HEADPHONE"]),
+  product_category: z.enum([
+    "MOUSE",
+    "KEYBOARD",
+    "HEADPHONE",
+    "CASE",
+    "FAN",
+    "SPEAKER",
+    "MOUSEPAD",
+    "GAMEPAD",
+  ]),
 });
 
 const ProductGetOne = z.object({
@@ -25,7 +34,16 @@ const ProductGetOne = z.object({
   product_name: z.string().min(3).max(22),
   dkp: z.number(),
   price: z.string(),
-  product_category: z.enum(["MOUSE", "KEYBOARD", "HEADPHONE"]),
+  product_category: z.enum([
+    "MOUSE",
+    "KEYBOARD",
+    "HEADPHONE",
+    "CASE",
+    "FAN",
+    "SPEAKER",
+    "MOUSEPAD",
+    "GAMEPAD",
+  ]),
   created_at: z.string(),
   updated_at: z.string(),
 });

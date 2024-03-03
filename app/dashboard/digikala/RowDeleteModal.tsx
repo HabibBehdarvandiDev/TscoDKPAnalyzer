@@ -1,5 +1,6 @@
 "use client";
 
+import Callout from "@/app/components/Callout";
 import { useUserContext } from "@/context/UserContext";
 import {
   DialogRoot,
@@ -15,11 +16,13 @@ import {
   Badge,
 } from "@radix-ui/themes";
 import axios from "axios";
+import { useState } from "react";
 
 import { FiTrash } from "react-icons/fi";
 
 const RowDeleteModal = ({ item }: any) => {
   const { decodeAuthToken } = useUserContext();
+  const [deleteMessage, setDeleteMessage] = useState<boolean>(false);
 
   const user = decodeAuthToken();
 
@@ -30,7 +33,7 @@ const RowDeleteModal = ({ item }: any) => {
         .delete(`http://localhost:3000/api/product/${item.id}`)
         .then((response) => {
           if (response.status === 200) {
-            window.location.reload();
+            setDeleteMessage(true);
           }
         });
     } catch (error) {
@@ -51,16 +54,14 @@ const RowDeleteModal = ({ item }: any) => {
         <DialogTitle className="uppercase">حذف کالا {item.title}</DialogTitle>
         <DialogDescription size="2" mb="4">
           <b>{user?.first_name}</b> عزیز، شما در حال حذف کالای{" "}
-          <Badge
-            variant="surface"
-            size={"1"}
-            color="red"
-            className="uppercase"
-          >
+          <Badge variant="surface" size={"1"} color="red" className="uppercase">
             {item.title}
           </Badge>{" "}
           هستید. لطفا در نظر داشته باشید که فعالیت شما در پایگاه داده ذخیره می
           شود.
+          <Badge color="yellow" variant="soft" size={"1"} my={"3"}>
+            لطفا بعداز حذف کالا صفحه را دوباره بارگزاری کنید
+          </Badge>
         </DialogDescription>
 
         <Flex gap="3" mt="4" justify="start">
@@ -73,6 +74,16 @@ const RowDeleteModal = ({ item }: any) => {
             <Button onClick={() => handleDelete()}>حذف</Button>
           </DialogClose>
         </Flex>
+        {deleteMessage && (
+          <Flex my={"3"} justify={"center"}>
+            <Callout
+              text="کالای مورد نظر حذف شده لطفا صفحه را دوباره بارگزاری کنید."
+              color="green"
+              size="2"
+              variant="surface"
+            />
+          </Flex>
+        )}
       </DialogContent>
     </DialogRoot>
   );

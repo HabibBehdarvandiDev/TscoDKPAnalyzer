@@ -33,9 +33,7 @@ export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const [authToken, setAuthToken] = useState(
-    localStorage.getItem("authToken") || ""
-  );
+  const [authToken, setAuthToken] = useState("");
 
   const setAuth = (token: string) => {
     setAuthToken(token);
